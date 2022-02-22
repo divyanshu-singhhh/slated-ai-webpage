@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutAlign="center stretch" fxFlexFill class="outlet">
+
+
+    <mat-card style="margin: 15%;" fxLayout="column" fxLayoutGap="20px">
+        <div fxLayout="row">
+            <mat-progress-bar color='accent' mode="indeterminate" *ngIf="onGoingRequest"></mat-progress-bar>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" [formControl] = 'nameControl' autocomplete="off">
+                <mat-error>Name is required. </mat-error>
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button color="accent"
+                    [disabled]="!nameControl.valid" (click)="getGender()">
+                    Show Gender
+                </button>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-around start" *ngIf="genderResponse">
+            {{genderResponse.name}} is {{genderResponse.gender}} with a probability of {{genderResponse.probability}}
+        </div>  
+
+    </mat-card>
+</div>
